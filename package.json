@@ -1,0 +1,22 @@
+{
+  "name": "starterpack-cannondev",
+  "version": "1.0.0",
+  "description": "SA2 procedure",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dartmouth-cs52-25w/starterpack-cannondev.git"
+  },
+  "author": "Thomas Clark",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dartmouth-cs52-25w/starterpack-cannondev/issues"
+  },
+  "homepage": "https://github.com/dartmouth-cs52-25w/starterpack-cannondev#readme",
+  "devDependencies": {
+    "vite": "^6.0.11"
+  }
+}
