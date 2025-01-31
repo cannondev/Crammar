@@ -22,5 +22,6 @@
         "max-len": ["error", 200],
         "no-extra-parens": 0,
         "no-restricted-syntax": [0, "DebuggerStatement"],
-        "no-debugger": "warn"
+        "no-debugger": "warn",
+        "no-param-reassign": ["error",{ "props": true, "ignorePropertyModificationsForRegex": [ "^draft"]}]
     }}
