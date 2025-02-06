@@ -4,6 +4,7 @@ import './style.scss';
 import {
   BrowserRouter, Routes, Route, NavLink, useParams,
 } from 'react-router';
+import Controls from './components/controls';
 
 // function App() {
 //   return <div className="test">All the REACT are belong to us!</div>;
@@ -52,7 +53,12 @@ function About(props) {
   return <div> All there is to know about me </div>;
 }
 function Welcome(props) {
-  return <div>Welcome</div>;
+  return (
+    <div>
+      <Controls />
+      Welcome
+    </div>
+  );
 }
 
 const root = createRoot(document.getElementById('main'));
