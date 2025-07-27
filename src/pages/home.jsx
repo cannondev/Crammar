@@ -13,7 +13,7 @@ function Home() {
         <Text textAlign="center" fontSize="4xl">
           Powered By RSVP. {' '}
           <Link
-            href="google.com"
+            to="/upload"
             color="orange.400"
             fontWeight="semibold"
             _hover={{ textDecoration: 'underline' }}

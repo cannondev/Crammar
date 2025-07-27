@@ -1,38 +1,41 @@
 import {
-  Box, Flex, Text, Button, FileUpload,
+  Box, Flex, Button,
 } from '@chakra-ui/react';
-import { HiUpload } from 'react-icons/hi';
+import { FaPlusCircle } from 'react-icons/fa';
 import React from 'react';
+import { NavLink } from 'react-router';
 
 function NavBar() {
   return (
     <Box bg="brand.500" px={6} py={4}>
       <Flex align="center" justify="space-between">
         <Box>
-          <Text fontFamily="heading" fontWeight="bold" color="brand.950" fontSize="4xl">
+          <Button
+            as={NavLink}
+            to="/"
+            variant="plain"
+            color="brand.950"
+            fontSize="4xl"
+            fontWeight="bold"
+          >
             Crammar.
-          </Text>
+          </Button>
         </Box>
         <Box>
           <Flex align="center" justify="space-between" gap={4}>
-            <Button variant="ghost">
-              About
-            </Button>
-            <Button variant="ghost">
+            <Button as={NavLink} to="/library" variant="ghost">
               Library
             </Button>
             {/* File Upload Button */}
-            <Box>
-              <FileUpload.Root accept={['application/pdf']}> {/* application/pdf is the official MIME type */}
-                <FileUpload.HiddenInput />
-                <FileUpload.Trigger asChild>
-                  <Button bg="brand.950" color="brand.500" size="sm">
-                    <HiUpload /> Upload PDF
-                  </Button>
-                </FileUpload.Trigger>
-                <FileUpload.List />
-              </FileUpload.Root>
-            </Box>
+            <Button
+              bg="brand.950"
+              color="brand.500"
+              size="sm"
+              as={NavLink}
+              to="/newDoc"
+            >
+              <FaPlusCircle /> Create Doc
+            </Button>
           </Flex>
         </Box>
       </Flex>

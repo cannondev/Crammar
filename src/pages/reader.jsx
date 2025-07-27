@@ -1,12 +1,8 @@
-import { Box } from '@chakra-ui/react';
-import React from 'react';
+// import { Box } from '@chakra-ui/react';
+// import React, { useEffect, useState } from 'react';
+// import { useParams, useNavigate } from 'react-router';
 
-function Reader() {
-  return (
-    <Box background="tomato" width="100%" padding="4" color="white">
-      This is the Reader Box
-    </Box>
-  );
-}
+// function Reader() {
+// }
 
-export default Reader;
+// export default Reader;

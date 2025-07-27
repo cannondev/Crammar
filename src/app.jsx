@@ -11,7 +11,7 @@ import NavBar from './components/navbar';
 import Home from './pages/home';
 import Reader from './pages/reader';
 import Library from './pages/library';
-import Upload from './pages/upload';
+import NewDoc from './pages/newDoc';
 import Footer from './components/footer';
 
 export default function App() {
@@ -26,7 +26,7 @@ export default function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/read/:docID" element={<Reader />} />
                 <Route path="/library" element={<Library />} />
-                <Route path="/upload" element={<Upload />} />
+                <Route path="/newDoc" element={<NewDoc />} />
                 <Route path="*" element={<div>URL Not Found. Rats!</div>} />
               </Routes>
             </Center>
