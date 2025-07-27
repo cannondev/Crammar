@@ -15,7 +15,7 @@ const config = defineConfig({
           100: { value: '#ccc5b9' },
           50: { value: '#403d39' },
           500: { value: '#252422' },
-          950: { value: '#eb5e28' },
+          950: { value: '#ed973b' },
         },
       },
       fonts: {

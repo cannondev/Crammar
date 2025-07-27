@@ -6,7 +6,7 @@ import React from 'react';
 
 function NavBar() {
   return (
-    <Box position="sticky" top="0" zIndex="1000" px={6} py={4}>
+    <Box bg="brand.500" px={6} py={4}>
       <Flex align="center" justify="space-between">
         <Box>
           <Text fontFamily="heading" fontWeight="bold" color="brand.950" fontSize="4xl">
@@ -26,7 +26,7 @@ function NavBar() {
               <FileUpload.Root accept={['application/pdf']}> {/* application/pdf is the official MIME type */}
                 <FileUpload.HiddenInput />
                 <FileUpload.Trigger asChild>
-                  <Button bg="brand.950" color="white" size="sm">
+                  <Button bg="brand.950" color="brand.500" size="sm">
                     <HiUpload /> Upload PDF
                   </Button>
                 </FileUpload.Trigger>

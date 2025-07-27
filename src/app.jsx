@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Box,
+  Center,
   ChakraProvider,
 } from '@chakra-ui/react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router';
@@ -16,21 +17,23 @@ import Footer from './components/footer';
 export default function App() {
   return (
     <ChakraProvider value={system}>
-      <Box bg="brand.500" minH="100vh">
+      <Box display="flex" flexDirection="column" bg="brand.500" minH="100vh">
         <Router>
           <NavBar />
-          <Box flex="1">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/read/:docID" element={<Reader />} />
-              <Route path="/library" element={<Library />} />
-              <Route path="/upload" element={<Upload />} />
-              <Route path="*" element={<div>URL Not Found. Rats!</div>} />
-            </Routes>
+          <Box display="flex" flex="1" justifyContent="center">
+            <Center>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/read/:docID" element={<Reader />} />
+                <Route path="/library" element={<Library />} />
+                <Route path="/upload" element={<Upload />} />
+                <Route path="*" element={<div>URL Not Found. Rats!</div>} />
+              </Routes>
+            </Center>
           </Box>
           <Footer />
         </Router>
-        <ToastContainer positon="top-center" autoClose={3000} />
+        <ToastContainer position="top-center" autoClose={3000} />
       </Box>
     </ChakraProvider>
   );

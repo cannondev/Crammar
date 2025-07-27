@@ -5,7 +5,7 @@ import React from 'react';
 
 function Footer() {
   return (
-    <Box position="fixed" bottom="0" width="100%" zIndex="1000" px={6} py={4}>
+    <Box px={6} py={4}>
       <Flex align="center" justify="center">
         <Button variant="plain" fontSize="sm">
           @cannondev
