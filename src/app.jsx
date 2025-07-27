@@ -19,16 +19,18 @@ export default function App() {
       <Box bg="brand.500" minH="100vh">
         <Router>
           <NavBar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/read/:docID" element={<Reader />} />
-            <Route path="/library" element={<Library />} />
-            <Route path="/upload" element={<Upload />} />
-            <Route path="*" element={<div>URL Not Found. Rats!</div>} />
-          </Routes>
+          <Box flex="1">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/read/:docID" element={<Reader />} />
+              <Route path="/library" element={<Library />} />
+              <Route path="/upload" element={<Upload />} />
+              <Route path="*" element={<div>URL Not Found. Rats!</div>} />
+            </Routes>
+          </Box>
           <Footer />
-          <ToastContainer positon="top-center" autoClose={3000} />
         </Router>
+        <ToastContainer positon="top-center" autoClose={3000} />
       </Box>
     </ChakraProvider>
   );
