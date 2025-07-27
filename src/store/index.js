@@ -4,8 +4,7 @@ import { immer } from 'zustand/middleware/immer';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-const API_KEY = '?key=t_clark';
-const ROOT_URL = '';
+const ROOT_URL = 'http://localhost:9090/api';
 
 const useStore = create(
   devtools(
@@ -17,7 +16,7 @@ const useStore = create(
         // CRUD Functions to interact with API; state management
         fetchAllDocs: async () => {
           try {
-            const response = await axios.get(`${ROOT_URL}/docs${API_KEY}`);
+            const response = await axios.get(`${ROOT_URL}/docs`);
             set(
               (draftState) => {
                 draftState.docSlice.all = response.data;
@@ -34,7 +33,7 @@ const useStore = create(
         fetchDoc: async (id) => {
           try {
             const response = await axios.get(
-              `${ROOT_URL}/docs/${id}${API_KEY}`,
+              `${ROOT_URL}/docs/${id}`,
             );
             set(
               (draftState) => {
@@ -51,7 +50,14 @@ const useStore = create(
 
         createDoc: async (doc) => {
           try {
-            await axios.post(`${ROOT_URL}/docs/${API_KEY}`, doc);
+            const formData = new FormData();
+            formData.append('title', doc.title);
+            formData.append('pdf', doc.pdfFile); // this must match backend field name
+
+            await axios.post(`${ROOT_URL}/docs/upload`, formData, {
+              headers: { 'Content-Type': 'multipart/form-data' },
+            });
+
             get().docSlice.fetchAllDocs();
             toast.success('Doc created!');
           } catch (error) {
@@ -62,7 +68,7 @@ const useStore = create(
 
         updateDoc: async (doc) => {
           try {
-            await axios.put(`${ROOT_URL}/docs/${doc.id}${API_KEY}`, doc);
+            await axios.put(`${ROOT_URL}/docs/${doc.id}`, doc);
             set(
               (draftState) => {
                 draftState.docSlice.current = doc;
@@ -79,7 +85,7 @@ const useStore = create(
 
         deleteDoc: async (id) => {
           try {
-            await axios.delete(`${ROOT_URL}/docs/${id}${API_KEY}`);
+            await axios.delete(`${ROOT_URL}/docs/${id}`);
             get().docSlice.fetchAllDocs();
             toast.success('Doc deleted!');
           } catch (error) {

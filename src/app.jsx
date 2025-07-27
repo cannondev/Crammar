@@ -9,7 +9,7 @@ import { ToastContainer } from 'react-toastify';
 import system from './theme/system';
 import NavBar from './components/navbar';
 import Home from './pages/home';
-import Reader from './pages/reader';
+// import Reader from './pages/reader';
 import Library from './pages/library';
 import NewDoc from './pages/newDoc';
 import Footer from './components/footer';
@@ -24,7 +24,7 @@ export default function App() {
             <Center>
               <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/read/:docID" element={<Reader />} />
+                {/* <Route path="/read/:docID" element={<Reader />} /> */}
                 <Route path="/library" element={<Library />} />
                 <Route path="/newDoc" element={<NewDoc />} />
                 <Route path="*" element={<div>URL Not Found. Rats!</div>} />

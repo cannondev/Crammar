@@ -55,7 +55,6 @@ function NewDoc() {
             <Field.Root>
               <Field.Label>Title:</Field.Label>
               <Input
-                isrequired
                 placeholder="Enter title:"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
