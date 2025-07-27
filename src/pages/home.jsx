@@ -1,6 +1,7 @@
 import {
-  Box, Text, Flex, Link,
+  Box, Text, Flex, Button,
 } from '@chakra-ui/react';
+import { NavLink } from 'react-router';
 import React from 'react';
 
 function Home() {
@@ -9,19 +10,13 @@ function Home() {
       <Box color="brand.10" width="100%" padding="4">
         <Text textAlign="center" fontSize="8xl">Read. Real Fast.</Text>
       </Box>
-      <Box width="100%" padding="4" color="brand.100">
-        <Text textAlign="center" fontSize="4xl">
-          Powered By RSVP. {' '}
-          <Link
-            to="/upload"
-            color="orange.400"
-            fontWeight="semibold"
-            _hover={{ textDecoration: 'underline' }}
-          >
-            Try it yourself
-          </Link>
-          .
+      <Box width="100%" padding="4" color="brand.100" display="flex" fontSize="4xl" alignItems="center" justifyContent="center">
+        <Text textAlign="center">
+          Powered By RSVP.
         </Text>
+        <Button as={NavLink} to="/newDoc" variant="plain" color="brand.950" fontWeight="semibold" fontSize="4xl" _hover={{ textDecoration: 'underline' }}>
+          Try it yourself.
+        </Button>
       </Box>
     </Flex>
   );
