@@ -1,65 +1,25 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import './style.scss';
-import {
-  BrowserRouter, Routes, Route, NavLink, useParams,
-} from 'react-router';
-import Controls from './components/controls';
+import App from './app';
+import Provider from './components/ui/provider';
 
-// function App() {
-//   return <div className="test">All the REACT are belong to us!</div>;
-// }
+/* *************************************
+  INDEX.JSX
+  Author: Thomas Clark
+  Last Updated: Jul. 2025
 
-function App(props) {
-  return (
-    <BrowserRouter>
-      <div>
-        <Nav />
-        <Routes>
-          <Route path="/" element={<Welcome />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/test/:id" element={<Test />} />
-          <Route path="*" element={<FallBack />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
-  );
-}
+  Things that im taking out but should not be forgotten:
+    1. Nav links and routes to about pages and fallbacks
+************************************** */
 
-function FallBack(props) {
-  return <div>URL Not Found</div>;
-}
+const rootElement = document.getElementById('root');
+const root = createRoot(rootElement);
 
-function Test(props) {
-  const { id } = useParams();
-  return <div> ID: {id} </div>;
-}
-
-function Nav(props) {
-  return (
-    <nav>
-      <ul>
-        <li><NavLink to="/">Home</NavLink></li>
-        <li><NavLink to="/about">About</NavLink></li>
-        <li><NavLink to="/test/id1">test id1</NavLink></li>
-        <li><NavLink to="/test/id2">test id2</NavLink></li>
-
-      </ul>
-    </nav>
-  );
-}
-
-function About(props) {
-  return <div> All there is to know about me </div>;
-}
-function Welcome(props) {
-  return (
-    <div>
-      <Controls />
-      Welcome
-    </div>
-  );
-}
-
-const root = createRoot(document.getElementById('main'));
-root.render(<App />);
+root.render(
+  <React.StrictMode>
+    <Provider>
+      <App />
+    </Provider>
+  </React.StrictMode>,
+);
