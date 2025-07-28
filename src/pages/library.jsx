@@ -7,15 +7,22 @@ import {
 } from '@chakra-ui/react';
 import React, { useEffect } from 'react';
 import { NavLink } from 'react-router';
+import { FaTrashAlt } from 'react-icons/fa';
 import useStore from '../store';
 
 function Library() {
   const allDocs = useStore((state) => state.docSlice.all);
   const fetchAllDocs = useStore((state) => state.docSlice.fetchAllDocs);
+  const deleteDoc = useStore((state) => state.docSlice.deleteDoc);
 
   useEffect(() => {
     fetchAllDocs();
   }, []);
+
+  const onDeleteClick = async (id) => {
+    await deleteDoc(id);
+    fetchAllDocs();
+  };
 
   return (
     <Box p={8}>
@@ -33,9 +40,9 @@ function Library() {
                   {doc.description}
                 </Card.Description>
               </Card.Body>
-              <Card.Footer justifyContent="flex-end">
-                <Button variant="outline">View</Button>
-                <Button as={NavLink} to="/read/:docID">Read</Button>
+              <Card.Footer justifyContent="space-between">
+                <Button as={NavLink} variant="outline" onClick={() => onDeleteClick(doc._id)} to="/library"><FaTrashAlt /></Button>
+                <Button as={NavLink} to={`/reader/${doc._id}`}>Read</Button>
               </Card.Footer>
             </Card.Root>
           </Box>

@@ -42,13 +42,10 @@ function NewDoc() {
 
   // this needs to be a little card in the middle that is a form for all the states and file upload.
   return (
-    <Box as="form" onSubmit={onSubmitClick}>
-      <Card.Root maxW="sm">
+    <Box as="form" width="500px" onSubmit={onSubmitClick}>
+      <Card.Root maxW="lg">
         <Card.Header>
-          <Card.Title>Create a Document</Card.Title>
-          <Card.Description>
-            Fill in the form below to create a new document.
-          </Card.Description>
+          <Card.Title>Create a Document:</Card.Title>
         </Card.Header>
         <Card.Body>
           <Stack gap="4" w="full">

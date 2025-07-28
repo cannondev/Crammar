@@ -9,7 +9,7 @@ import { ToastContainer } from 'react-toastify';
 import system from './theme/system';
 import NavBar from './components/navbar';
 import Home from './pages/home';
-// import Reader from './pages/reader';
+import Reader from './pages/reader';
 import Library from './pages/library';
 import NewDoc from './pages/newDoc';
 import Footer from './components/footer';
@@ -20,11 +20,11 @@ export default function App() {
       <Box display="flex" flexDirection="column" bg="brand.500" minH="100vh">
         <Router>
           <NavBar />
-          <Box display="flex" flex="1" justifyContent="center">
+          <Box display="flex" flex="1" justifyContent="center" width="100%">
             <Center>
               <Routes>
                 <Route path="/" element={<Home />} />
-                {/* <Route path="/read/:docID" element={<Reader />} /> */}
+                <Route path="/reader/:docID" element={<Reader />} />
                 <Route path="/library" element={<Library />} />
                 <Route path="/newDoc" element={<NewDoc />} />
                 <Route path="*" element={<div>URL Not Found. Rats!</div>} />
