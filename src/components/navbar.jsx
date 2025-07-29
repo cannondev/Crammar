@@ -7,7 +7,7 @@ import { NavLink } from 'react-router';
 
 function NavBar() {
   return (
-    <Box bg="brand.500" px={6} py={4}>
+    <Box bg="brand.500" px={6} py={4} mt="10px">
       <Flex align="center" justify="space-between">
         <Box>
           <Button
@@ -24,7 +24,7 @@ function NavBar() {
         <Box>
           <Flex align="center" justify="space-between" gap={4}>
             <Button as={NavLink} to="/library" fontSize="3xl" variant="ghost">
-              Library
+              My Library
             </Button>
             {/* File Upload Button */}
             <Button
