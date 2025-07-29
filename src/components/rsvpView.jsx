@@ -27,7 +27,7 @@ export default function RSVPView({ wordArray }) {
   const [wordIndex, setWordIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const arrayLen = wordArray.length - 1;
-  const initialWpm = [100];
+  const initialWpm = [101];
   const [wpm, setWpm] = useState(initialWpm);
   const [endWpm, setEndWpm] = useState(initialWpm);
   const skipInterval = 10;
@@ -65,12 +65,12 @@ export default function RSVPView({ wordArray }) {
   };
 
   useEffect(() => {
-    let intervalId;
+    let interval;
 
     if (!paused) {
       const delay = 60000 / wpm;
 
-      intervalId = setInterval(() => {
+      interval = setInterval(() => {
         setWordIndex((prev) => {
           if (prev < arrayLen) {
             return prev + 1;
@@ -83,7 +83,7 @@ export default function RSVPView({ wordArray }) {
     }
 
     return () => {
-      if (intervalId) clearInterval(intervalId);
+      if (interval) clearInterval(interval);
     };
   }, [paused, wpm, arrayLen]);
 
@@ -134,8 +134,8 @@ export default function RSVPView({ wordArray }) {
             value={wpm}
             onValueChange={(e) => setWpm(e.value)}
             onValueChangeEnd={(e) => setEndWpm(e.value)}
-            min={10}
-            max={700}
+            min={1}
+            max={701}
             step={10}
             mt="3"
           >
@@ -148,10 +148,7 @@ export default function RSVPView({ wordArray }) {
           </Slider.Root>
           <Stack mt="3" gap="1">
             <Code>
-              onChange: <b>{wpm}</b>
-            </Code>
-            <Code>
-              onChangeEnd: <b>{endWpm}</b>
+              Words Per Minute: <b>{endWpm - 1}</b>
             </Code>
           </Stack>
         </Box>

@@ -1,14 +1,16 @@
+/* eslint-disable padded-blocks */
 import {
   Box, Text, Flex, Button,
 } from '@chakra-ui/react';
 import { NavLink } from 'react-router';
 import React from 'react';
+import HeroRSVP from '../components/heroRSVP';
 
 function Home() {
   return (
     <Flex flexDirection="column" width="100%" height="100%" justifyContent="space-evenly">
       <Box color="brand.10" width="100%" padding="4">
-        <Text textAlign="center" fontSize="8xl">Read. Real Fast.</Text>
+        <HeroRSVP />
       </Box>
       <Box width="100%" padding="4" color="brand.100" display="flex" fontSize="4xl" alignItems="center" justifyContent="center">
         <Text textAlign="center">

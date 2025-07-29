@@ -16,6 +16,7 @@ import useStore from '../store';
 function NewDoc() {
   // local states for holding without API calling
   const [title, setTitle] = useState('');
+  const [fileName] = useState('');
   const [content] = useState('');
   const [preview] = useState('');
   const [description] = useState('');
@@ -31,6 +32,7 @@ function NewDoc() {
     }
     const newDoc = {
       title,
+      fileName,
       content,
       preview,
       description,

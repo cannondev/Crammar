@@ -15,7 +15,7 @@ function NavBar() {
             to="/"
             variant="plain"
             color="brand.950"
-            fontSize="4xl"
+            fontSize="5xl"
             fontWeight="bold"
           >
             Crammar.
@@ -23,14 +23,16 @@ function NavBar() {
         </Box>
         <Box>
           <Flex align="center" justify="space-between" gap={4}>
-            <Button as={NavLink} to="/library" variant="ghost">
+            <Button as={NavLink} to="/library" fontSize="3xl" variant="ghost">
               Library
             </Button>
             {/* File Upload Button */}
             <Button
               bg="brand.950"
               color="brand.500"
-              size="sm"
+              size="md"
+              fontSize="2xl"
+              fontWeight="semibold"
               as={NavLink}
               to="/newDoc"
             >

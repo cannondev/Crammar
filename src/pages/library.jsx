@@ -37,7 +37,7 @@ function Library() {
                 </Avatar.Root>
                 <Card.Title mt="2">{doc.title}</Card.Title>
                 <Card.Description>
-                  {doc.description}
+                  {doc.fileName}
                 </Card.Description>
               </Card.Body>
               <Card.Footer justifyContent="space-between">

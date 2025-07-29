@@ -22,9 +22,9 @@ function Reader() {
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center" flex="1" minWidth="80vw" minHeight="100%" p={4}>
-      <Box display="flex" flexDirection="row" justifyContent="space-between" alignItems="center" minWidth="70vw">
+      <Box display="flex" flexDirection="row" justifyContent="space-between" alignItems="center" minWidth="40vw">
         <Text textAlign="center" fontSize="3xl">
-          {doc.title}.pdf
+          {doc.title}
         </Text>
 
         <SegmentGroup.Root value={view} onValueChange={(e) => setView(e.value)}>
