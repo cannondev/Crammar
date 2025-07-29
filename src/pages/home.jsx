@@ -2,8 +2,8 @@
 import {
   Box, Text, Flex, Button,
 } from '@chakra-ui/react';
-import { NavLink } from 'react-router';
 import React from 'react';
+import { newDocOverlay } from './newDoc';
 import HeroRSVP from '../components/heroRSVP';
 
 function Home() {
@@ -16,7 +16,7 @@ function Home() {
         <Text textAlign="center">
           Powered By RSVP.
         </Text>
-        <Button as={NavLink} to="/newDoc" variant="plain" color="brand.950" fontWeight="semibold" fontSize="4xl" _hover={{ textDecoration: 'underline' }}>
+        <Button onClick={() => newDocOverlay.open('new-doc', {})} variant="plain" color="brand.950" fontWeight="semibold" fontSize="4xl" _hover={{ textDecoration: 'underline' }}>
           Try it yourself.
         </Button>
       </Box>

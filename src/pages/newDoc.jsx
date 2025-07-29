@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, NavLink } from 'react-router';
+import { useNavigate } from 'react-router';
 import {
   Box,
   Button,
@@ -8,13 +8,16 @@ import {
   Input,
   Stack,
   FileUpload,
+  createOverlay,
+  Dialog,
+  Portal,
 } from '@chakra-ui/react';
 import { HiUpload } from 'react-icons/hi';
 import { FaXmark } from 'react-icons/fa6';
 import { toast } from 'react-toastify';
 import useStore from '../store';
 
-function NewDoc() {
+function NewDoc({ onClose }) {
   // local states for holding without API calling
   const [title, setTitle] = useState('');
   const [fileName] = useState('');
@@ -38,7 +41,7 @@ function NewDoc() {
       return;
     }
 
-    setLoading(!loading);
+    setLoading(true);
 
     const newDoc = {
       title,
@@ -49,7 +52,14 @@ function NewDoc() {
       pdfFile,
     };
     await createDoc(newDoc);
-    navigate('/');
+
+    setLoading(false);
+    if (onClose) {
+      onClose();
+      navigate('/library');
+    } else {
+      navigate('/');
+    }
   };
 
   // this needs to be a little card in the middle that is a form for all the states and file upload.
@@ -65,7 +75,7 @@ function NewDoc() {
           <Card.Title color="brand.500" fontSize="2xl">
             Create a Document:
           </Card.Title>
-          <Button as={NavLink} to="/" variant="plain" color="red" size="lg">
+          <Button onClick={() => onClose && onClose()} to="/" variant="plain" color="red" size="lg">
             <FaXmark />
           </Button>
         </Card.Header>
@@ -134,7 +144,13 @@ function NewDoc() {
           </Stack>
         </Card.Body>
         <Card.Footer justifyContent="flex-end" gap="2">
-          <Button type="submit" fontWeight="semibold" colorPalette="green" loading={loading} onClick={onSubmitClick}>
+          <Button
+            type="submit"
+            fontWeight="semibold"
+            colorPalette="green"
+            loading={loading}
+            onClick={onSubmitClick}
+          >
             Create
           </Button>
         </Card.Footer>
@@ -144,3 +160,17 @@ function NewDoc() {
 }
 
 export default NewDoc;
+export const newDocOverlay = createOverlay((props) => (
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  <Dialog.Root {...props}>
+    <Portal>
+      <Dialog.Backdrop />
+      <Dialog.Positioner display="flex" alignItems="center" justifyContent="center">
+        <Dialog.Content>
+          {/* render the same NewDoc, passing onClose */}
+          <NewDoc onClose={() => newDocOverlay.close('new-doc')} />
+        </Dialog.Content>
+      </Dialog.Positioner>
+    </Portal>
+  </Dialog.Root>
+));

@@ -4,6 +4,7 @@ import {
 import { FaPlusCircle } from 'react-icons/fa';
 import React from 'react';
 import { NavLink } from 'react-router';
+import { newDocOverlay } from '../pages/newDoc';
 
 function NavBar() {
   return (
@@ -33,8 +34,7 @@ function NavBar() {
               size="md"
               fontSize="2xl"
               fontWeight="semibold"
-              as={NavLink}
-              to="/newDoc"
+              onClick={() => newDocOverlay.open('new-doc', {})}
             >
               <FaPlusCircle /> Create Doc
             </Button>
