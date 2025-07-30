@@ -8,6 +8,7 @@ import Home from './pages/home';
 import Reader from './pages/reader';
 import Library from './pages/library';
 import { newDocOverlay } from './pages/newDoc';
+import { loginOverlay } from './pages/login';
 import Footer from './components/footer';
 
 export default function App() {
@@ -28,6 +29,7 @@ export default function App() {
           </Box>
           <Footer />
           <newDocOverlay.Viewport /> {/* new document form modal */}
+          <loginOverlay.Viewport /> {/* login modal */}
         </Router>
         <ToastContainer position="top-center" autoClose={2000} />
       </Box>
