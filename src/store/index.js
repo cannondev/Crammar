@@ -4,7 +4,7 @@ import { immer } from 'zustand/middleware/immer';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-const ROOT_URL = 'http://localhost:9090/api';
+const ROOT_URL = 'https://api-crammar.onrender.com/api';
 
 const useStore = create(
   devtools(
