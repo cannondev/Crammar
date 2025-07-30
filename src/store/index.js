@@ -14,6 +14,7 @@ const useStore = create(
         current: {},
 
         // CRUD Functions to interact with API; state management
+        // Fetch all docs
         fetchAllDocs: async () => {
           try {
             const response = await axios.get(`${ROOT_URL}/docs`);
@@ -30,6 +31,7 @@ const useStore = create(
           }
         },
 
+        // Fetch a single doc by ID
         fetchDoc: async (id) => {
           try {
             const response = await axios.get(
@@ -48,6 +50,7 @@ const useStore = create(
           }
         },
 
+        // create document, form accepts title and pdf file
         createDoc: async (doc) => {
           try {
             const formData = new FormData();
@@ -66,6 +69,7 @@ const useStore = create(
           }
         },
 
+        // delete document by ID
         deleteDoc: async (id) => {
           try {
             await axios.delete(`${ROOT_URL}/docs/${id}`);

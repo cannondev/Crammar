@@ -2,19 +2,24 @@ import {
   Box,
   Button,
   Card,
-  Avatar,
-  SimpleGrid,
+  Stack,
 } from '@chakra-ui/react';
+import {
+  Document, Page,
+} from 'react-pdf';
 import React, { useEffect } from 'react';
 import { NavLink } from 'react-router';
 import { FaTrashAlt } from 'react-icons/fa';
 import useStore from '../store';
 
 function Library() {
+  // Zustand store hooks
+  // Fetch all documents, current document, and delete document functions
   const allDocs = useStore((state) => state.docSlice.all);
   const fetchAllDocs = useStore((state) => state.docSlice.fetchAllDocs);
   const deleteDoc = useStore((state) => state.docSlice.deleteDoc);
 
+  // Fetch all documents on mount
   useEffect(() => {
     fetchAllDocs();
   }, []);
@@ -26,28 +31,53 @@ function Library() {
 
   return (
     <Box p={8}>
-      <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6}>
+      <Stack spacing={6}>
         {allDocs.map((doc) => (
-          <Box key={doc._id}>
-            <Card.Root width="320px">
-              <Card.Body gap="2">
-                <Avatar.Root size="lg" shape="rounded">
-                  <Avatar.Image src="https://picsum.photos/200/300" />
-                  <Avatar.Fallback name="Nue Camp" />
-                </Avatar.Root>
-                <Card.Title mt="2">{doc.title}</Card.Title>
-                <Card.Description>
-                  {doc.fileName}
-                </Card.Description>
-              </Card.Body>
-              <Card.Footer justifyContent="space-between">
-                <Button as={NavLink} variant="outline" onClick={() => onDeleteClick(doc._id)} to="/library"><FaTrashAlt /></Button>
-                <Button as={NavLink} to={`/reader/${doc._id}`}>Read</Button>
-              </Card.Footer>
-            </Card.Root>
-          </Box>
+          <Card.Root key={doc._id} width="100%">
+            <Stack
+              direction="row"
+              align="center"
+              p={4}
+              gap={6}
+            >
+              <Box
+                boxSize="80px"
+                overflow="hidden"
+                borderRadius="md"
+                background="gray.100"
+              >
+                {/* Display the first page of the PDF as a thumbnail */}
+                <Document file={doc.pdfUrl}>
+                  <Page
+                    pageNumber={1}
+                    width={80}
+                    renderTextLayer={false}
+                    renderAnnotationLayer={false}
+                  />
+                </Document>
+              </Box>
+
+              <Box flex="1">
+                <Card.Title>{doc.title}</Card.Title>
+                <Card.Description>{doc.fileName}</Card.Description>
+              </Box>
+
+              <Stack direction="row" spacing={2}>
+                <Button
+                  variant="plain"
+                  onClick={() => onDeleteClick(doc._id)}
+                  _hover={{ bg: 'red' }}
+                >
+                  <FaTrashAlt />
+                </Button>
+                <Button as={NavLink} to={`/reader/${doc._id}`} _hover={{ bg: 'brand.950' }} fontWeight="semibold">
+                  Read
+                </Button>
+              </Stack>
+            </Stack>
+          </Card.Root>
         ))}
-      </SimpleGrid>
+      </Stack>
     </Box>
   );
 }

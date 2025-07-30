@@ -1,21 +1,40 @@
-// src/components/PDFView.jsx
 import React, { useState } from 'react';
 import { Document, Page } from 'react-pdf';
-import { Button } from '@chakra-ui/react';
+import { Box, Button, Text } from '@chakra-ui/react';
+import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
 
+// https://www.npmjs.com/package/react-pdf
 function PDFView({ pdfUrl }) {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
-
-  console.log({ pdfUrl });
 
   function onDocumentLoadSuccess({ numPages: totalPages }) {
     setNumPages(totalPages);
   }
 
   return (
-    <div>
-      {/* Use your pdfUrl prop instead of a hard‑coded string */}
+    <Box display="flex" flexDirection="column" borderRadius={10} overflow="hidden">
+      <Box bg="brand.950" display="flex" flexDirection="row" justifyContent="center" alignItems="center" gapX={4}>
+        <Button
+          disabled={pageNumber <= 1}
+          onClick={() => setPageNumber((p) => p - 1)}
+          variant="plain"
+          color="brand.500"
+        >
+          <FaAngleLeft />
+        </Button>
+        <Text color="brand.500" fontWeight="semibold">
+          Page {pageNumber} of {numPages}
+        </Text>
+        <Button
+          disabled={pageNumber >= numPages}
+          onClick={() => setPageNumber((p) => p + 1)}
+          variant="plain"
+          color="brand.500"
+        >
+          <FaAngleRight />
+        </Button>
+      </Box>
       <Document
         file={pdfUrl}
         // eslint-disable-next-line react/jsx-no-bind
@@ -24,25 +43,7 @@ function PDFView({ pdfUrl }) {
       >
         <Page pageNumber={pageNumber} />
       </Document>
-
-      <p>
-        Page {pageNumber} of {numPages}
-      </p>
-
-      {/* Optional simple controls */}
-      <Button
-        disabled={pageNumber <= 1}
-        onClick={() => setPageNumber((p) => p - 1)}
-      >
-        Prev
-      </Button>
-      <Button
-        disabled={pageNumber >= numPages}
-        onClick={() => setPageNumber((p) => p + 1)}
-      >
-        Next
-      </Button>
-    </div>
+    </Box>
   );
 }
 

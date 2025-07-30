@@ -18,7 +18,7 @@ import { toast } from 'react-toastify';
 import useStore from '../store';
 
 function NewDoc({ onClose }) {
-  // local states for holding without API calling
+  // local states for holding before API calling
   const [title, setTitle] = useState('');
   const [pdfFile, setPdfFile] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -36,7 +36,7 @@ function NewDoc({ onClose }) {
       return;
     }
 
-    setLoading(true);
+    setLoading(true); // start spinner
 
     const newDoc = {
       title,
@@ -53,8 +53,10 @@ function NewDoc({ onClose }) {
     }
   };
 
-  // this needs to be a little card in the middle that is a form for all the states and file upload.
   return (
+    // Form for creating a new document
+    // Eventually rendered in a modal overlay
+    // https://chakra-ui.com/docs/components/card
     <Box as="form" width="500px" onSubmit={onSubmitClick}>
       <Card.Root maxW="lg" bg="brand.10">
         <Card.Header
@@ -92,10 +94,10 @@ function NewDoc({ onClose }) {
               />
             </Field.Root>
             {/* File Upload Button */}
+            {/* https://chakra-ui.com/docs/components/file-upload */}
             <Box>
               <FileUpload.Root accept={['application/pdf']}>
                 {' '}
-                {/* application/pdf is the official MIME type */}
                 <FileUpload.HiddenInput />
                 <FileUpload.Trigger asChild>
                   <Button
@@ -109,6 +111,7 @@ function NewDoc({ onClose }) {
                 </FileUpload.Trigger>
                 {/* Capture the file in state */}
                 <FileUpload.Context>
+                  {/* defensive check for uploading multiple pds - offered by chatGPT */}
                   {({ acceptedFiles }) => {
                     useEffect(() => {
                       if (acceptedFiles.length > 0) {
@@ -118,6 +121,7 @@ function NewDoc({ onClose }) {
 
                     return (
                       <FileUpload.ItemGroup>
+                        {/* File preview */}
                         {acceptedFiles.map((file) => (
                           <FileUpload.Item key={file.name} file={file}>
                             <FileUpload.ItemPreview />
@@ -152,6 +156,8 @@ function NewDoc({ onClose }) {
 
 export default NewDoc;
 
+// The follwing is provided by chatGPT to create an overlay for the NewDoc component
+// https://chakra-ui.com/docs/components/overlay
 export const newDocOverlay = createOverlay((props) => (
   // eslint-disable-next-line react/jsx-props-no-spreading
   <Dialog.Root {...props}>

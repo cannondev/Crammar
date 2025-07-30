@@ -12,7 +12,7 @@ import Footer from './components/footer';
 
 export default function App() {
   return (
-    <ChakraProvider value={system}>
+    <ChakraProvider value={system}> {/* chakra theme provider */}
       <Box display="flex" flexDirection="column" bg="brand.500" minH="100vh">
         <Router>
           <NavBar />
@@ -27,9 +27,9 @@ export default function App() {
             </Center>
           </Box>
           <Footer />
-          <newDocOverlay.Viewport />
+          <newDocOverlay.Viewport /> {/* new document form modal */}
         </Router>
-        <ToastContainer position="top-center" autoClose={3000} />
+        <ToastContainer position="top-center" autoClose={2000} />
       </Box>
     </ChakraProvider>
   );

@@ -1,12 +1,14 @@
 import { Box, Text, Spinner } from '@chakra-ui/react';
 import React, { useState, useEffect } from 'react';
 
+// this component displays the hero text from /public/heroText.txt
+// "Welcome to Crammar..."
 export default function HeroRSVP() {
   const [text, setText] = useState(null);
   const [heroIndex, setHeroIndex] = useState(0);
   const [wpm, setWpm] = useState(45);
 
-  // computes when null to avoid rendering bugs. Thanks, chatGPT.
+  // computes even when null to avoid rendering bugs. Thanks, chatGPT.
   const heroArray = text?.split(/\s+/) ?? [];
   const arrayLen = heroArray.length - 1;
 
@@ -21,17 +23,21 @@ export default function HeroRSVP() {
   }, []);
 
   useEffect(() => {
+    // increase WPM every 2nd word
     if (heroIndex > 0 && heroIndex % 2 === 0) {
       setWpm((prev) => prev + 9);
     }
   }, [heroIndex]);
 
+  // iterates through the hero text at a rate of wpm
+  // this was adapted from a chatGPT suggestion
+  // it uses setInterval to update the heroIndex every delay milliseconds
   useEffect(() => {
     const delay = 60000 / wpm;
-    const iv = setInterval(() => {
+    const interval = setInterval(() => {
       setHeroIndex((i) => Math.min(i + 1, arrayLen));
     }, delay);
-    return () => clearInterval(iv);
+    return () => clearInterval(interval);
   }, [wpm, arrayLen]);
 
   if (text === null) {

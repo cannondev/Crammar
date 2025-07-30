@@ -7,13 +7,7 @@ import 'react-pdf/dist/Page/AnnotationLayer.css';
 import App from './app';
 import Provider from './components/ui/provider';
 
-/* *************************************
-  INDEX.JSX
-  Author: Thomas Clark
-  Last Updated: Jul. 2025
-************************************** */
-
-// Point at the matching version on unpkg
+// web worker script for PDF.js
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 const rootElement = document.getElementById('root');

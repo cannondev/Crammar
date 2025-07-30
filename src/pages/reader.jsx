@@ -11,32 +11,33 @@ function Reader() {
   const doc = useStore((state) => state.docSlice.current);
   const fetchDoc = useStore((state) => state.docSlice.fetchDoc);
 
-  const [view, setView] = useState('Rsvp');
+  const [view, setView] = useState('RSVP'); // default view set to RSVP
 
   useEffect(() => {
     fetchDoc(docID);
   }, [docID]);
 
-  useEffect(() => {
+  useEffect(() => { // used for debugging to check for doc defintion
     console.log('Fetched doc:', doc);
   }, [doc]);
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center" flex="1" minWidth="80vw" minHeight="100%" p={4}>
-      <Box display="flex" flexDirection="row" justifyContent="space-between" alignItems="center" minWidth="40vw">
+      <Box display="flex" flexDirection="row" gap="20" alignItems="center" minWidth="40vw">
         <Text textAlign="center" fontSize="3xl">
           {doc.title}
         </Text>
 
+        {/* https://chakra-ui.com/docs/components/segment-group */}
         <SegmentGroup.Root value={view} onValueChange={(e) => setView(e.value)}>
           <SegmentGroup.Indicator />
-          <SegmentGroup.Items items={['Summary', 'Rsvp', 'PDF']} />
+          <SegmentGroup.Items items={['Summary', 'RSVP', 'PDF']} />
         </SegmentGroup.Root>
       </Box>
 
       <Box width="70vw" height="100%" display="flex" flexDirection="column" alignItems="center" justifyItems="center" mt={8}>
         {view === 'Summary' && <SummaryView summary={doc.summary} />}
-        {view === 'Rsvp' && <RSVPView wordArray={doc.wordArray} />}
+        {view === 'RSVP' && <RSVPView wordArray={doc.wordArray} />}
         {view === 'PDF' && <PDFView pdfUrl={doc.pdfUrl} />}
       </Box>
     </Box>

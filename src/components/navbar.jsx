@@ -6,6 +6,7 @@ import React from 'react';
 import { NavLink } from 'react-router';
 import { newDocOverlay } from '../pages/newDoc';
 
+// classic navbar, nothing special
 function NavBar() {
   return (
     <Box bg="brand.500" px={6} py={4} mt="10px">
@@ -27,14 +28,13 @@ function NavBar() {
             <Button as={NavLink} to="/library" fontSize="3xl" variant="ghost">
               My Library
             </Button>
-            {/* File Upload Button */}
             <Button
               bg="brand.950"
               color="brand.500"
               size="md"
               fontSize="2xl"
               fontWeight="semibold"
-              onClick={() => newDocOverlay.open('new-doc', {})}
+              onClick={() => newDocOverlay.open('new-doc', {})} // open the newDoc modal overlay
             >
               <FaPlusCircle /> Create Doc
             </Button>

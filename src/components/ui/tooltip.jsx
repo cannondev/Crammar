@@ -1,5 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable import/prefer-default-export */
+
+// IMPLEMENTED AUTOMATICALLY BY CHAKRA UI, I did not touch this.
 import { Tooltip as ChakraTooltip, Portal } from '@chakra-ui/react';
 import * as React from 'react';
 

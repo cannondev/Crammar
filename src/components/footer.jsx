@@ -4,6 +4,7 @@ import {
 import React from 'react';
 import { Link } from 'react-router';
 
+// pretty self explanatory
 function Footer() {
   return (
     <Box px={6} py={4}>

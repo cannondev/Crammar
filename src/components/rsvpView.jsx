@@ -1,12 +1,6 @@
 /* eslint-disable no-trailing-spaces */
 import {
-  Box,
-  Button,
-  Text,
-  Spinner,
-  Slider,
-  Stack,
-  Code,
+  Box, Button, Text, Spinner, Slider, Stack, 
 } from '@chakra-ui/react';
 import {
   FaBackwardStep,
@@ -19,18 +13,20 @@ import {
 import React, { useState, useEffect } from 'react';
 
 export default function RSVPView({ wordArray }) {
-  if (!Array.isArray(wordArray)) {
+  if (!Array.isArray(wordArray)) { // Ensure wordArray is an array, mostly a time waster to prevent undefined errors
     return <Spinner />;
   }
 
-  console.log(`word array: ${wordArray}`);
   const [wordIndex, setWordIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const arrayLen = wordArray.length - 1;
   const initialWpm = [101];
+
+  // adapted from the Chakra-UI slider docs for changing the value
+  // https://chakra-ui.com/docs/components/slider
   const [wpm, setWpm] = useState(initialWpm);
   const [endWpm, setEndWpm] = useState(initialWpm);
-  const skipInterval = 10;
+  const skipInterval = 20;
 
   const handlePlayPause = () => {
     if (!paused) {
@@ -64,6 +60,7 @@ export default function RSVPView({ wordArray }) {
     }
   };
 
+  // setInterval implementation was provided by chatGPT
   useEffect(() => {
     let interval;
 
@@ -100,36 +97,40 @@ export default function RSVPView({ wordArray }) {
         <Text fontSize="80pt">{wordArray[wordIndex]}</Text>
       </Box>
 
-      <Box display="flex" flexDirection="column" mt="75px">
-        <Box
-          display="flex"
-          flexDirection="row"
-          justifyContent="space-between"
-          mt="3"
-        >
-          <Button onClick={handleToStart}>
+      <Box
+        display="flex"
+        flexDirection="column"
+        bg="brand.50"
+        rounded={10}
+        p={4}
+        mt="75px"
+      >
+        {/* Playback Controls */}
+        <Box display="flex" flexDirection="row" justifyContent="space-around">
+          <Button onClick={handleToStart} _hover={{ bg: 'brand.950' }}>
             <FaBackwardStep />
           </Button>
 
           <Box display="flex" flexDirection="row" gap="20px">
-            <Button onClick={handleSkipBack}>
+            <Button onClick={handleSkipBack} _hover={{ bg: 'brand.950' }}>
               <FaBackward />
             </Button>
 
-            <Button onClick={handlePlayPause}>
-              {paused ? <FaPlay /> : <FaPause />}
+            <Button onClick={handlePlayPause} _hover={{ bg: 'brand.950' }}>
+              {paused ? <FaPlay /> : <FaPause />} 
             </Button>
 
-            <Button onClick={handleSkipForward}>
+            <Button onClick={handleSkipForward} _hover={{ bg: 'brand.950' }}>
               <FaForward />
             </Button>
           </Box>
 
-          <Button onClick={handleToEnd}>
+          <Button onClick={handleToEnd} _hover={{ bg: 'brand.950' }}>
             <FaForwardStep />
           </Button>
         </Box>
         <Box display="flex" flexDirection="column" justifyContent="center">
+          {/* See above for slider docs reference */}
           <Slider.Root
             value={wpm}
             onValueChange={(e) => setWpm(e.value)}
@@ -143,13 +144,19 @@ export default function RSVPView({ wordArray }) {
               <Slider.Track>
                 <Slider.Range />
               </Slider.Track>
-              <Slider.Thumbs />
+              <Slider.Thumbs
+                _hover={{ bg: 'brand.950' }}
+                _active={{ bg: 'brand.950' }}
+              />
             </Slider.Control>
           </Slider.Root>
           <Stack mt="3" gap="1">
-            <Code>
-              Words Per Minute: <b>{endWpm - 1}</b>
-            </Code>
+            <Text fontWeight="regular">
+              Words Per Minute:{' '}
+              <Text as="span" color="brand.950" fontWeight="bold">
+                {endWpm - 1}
+              </Text>
+            </Text>
           </Stack>
         </Box>
       </Box>
