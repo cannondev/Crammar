@@ -16,7 +16,7 @@ export default function App() {
   return (
     <Box>
       <ThemeProvider attribute="class" defaultTheme="dark">
-        <ChakraProvider value={system}>
+        <ChakraProvider theme={system}>
           {' '}
           {/* chakra theme provider */}
           <Box
