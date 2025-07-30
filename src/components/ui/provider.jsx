@@ -5,7 +5,7 @@ import { ColorModeProvider } from './color-mode';
 
 export default function Provider({ children }) {
   return (
-    <ChakraProvider theme={system}>
+    <ChakraProvider value={system}>
       {/* force app into dark mode via next-themes */}
       <ColorModeProvider defaultTheme="dark" attribute="class" disableTransitionOnChange>
         {children}
