@@ -6,15 +6,19 @@
 import {
   ClientOnly, IconButton, Skeleton, Span,
 } from '@chakra-ui/react';
-import { ThemeProvider, useTheme } from 'next-themes';
+import { ThemeProvider as NextThemesProvider, useTheme } from 'next-themes';
 
 import * as React from 'react';
 import { LuMoon, LuSun } from 'react-icons/lu';
 
 export function ColorModeProvider(props) {
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <ThemeProvider attribute="class" disableTransitionOnChange {...props} />
+    <NextThemesProvider
+      attribute="class"
+      defaultTheme="dark" // force dark
+      disableTransitionOnChange
+      {...props}
+    />
   );
 }
 
