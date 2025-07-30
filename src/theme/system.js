@@ -8,7 +8,6 @@ import {
 const config = defineConfig({
 
   initialColorMode: 'dark',
-  useSystemColorMode: false,
 
   theme: {
     extend: true, // to keep base tokens + add yours
