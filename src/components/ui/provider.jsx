@@ -7,7 +7,7 @@ export default function Provider({ children }) {
   return (
     <ChakraProvider theme={system}>
       {/* force app into dark mode via next-themes */}
-      <ColorModeProvider>
+      <ColorModeProvider defaultTheme="dark" attribute="class" disableTransitionOnChange>
         {children}
       </ColorModeProvider>
     </ChakraProvider>
