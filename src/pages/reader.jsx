@@ -4,6 +4,7 @@ import { useParams } from 'react-router';
 import useStore from '../store';
 import SummaryView from '../components/summaryView';
 import RSVPView from '../components/rsvpView';
+import PDFView from '../components/pdfView';
 
 function Reader() {
   const { docID } = useParams(); // retrieves complex docID given by API call
@@ -29,13 +30,14 @@ function Reader() {
 
         <SegmentGroup.Root value={view} onValueChange={(e) => setView(e.value)}>
           <SegmentGroup.Indicator />
-          <SegmentGroup.Items items={['Summary', 'Rsvp']} />
+          <SegmentGroup.Items items={['Summary', 'Rsvp', 'PDF']} />
         </SegmentGroup.Root>
       </Box>
 
       <Box width="70vw" height="100%" display="flex" flexDirection="column" alignItems="center" justifyItems="center" mt={8}>
         {view === 'Summary' && <SummaryView summary={doc.summary} />}
         {view === 'Rsvp' && <RSVPView wordArray={doc.wordArray} />}
+        {view === 'PDF' && <PDFView pdfUrl={doc.pdfUrl} />}
       </Box>
     </Box>
   );

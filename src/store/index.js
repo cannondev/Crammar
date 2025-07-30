@@ -66,23 +66,6 @@ const useStore = create(
           }
         },
 
-        updateDoc: async (doc) => {
-          try {
-            await axios.put(`${ROOT_URL}/docs/${doc.id}`, doc);
-            set(
-              (draftState) => {
-                draftState.docSlice.current = doc;
-                toast.success('Doc updated!');
-              },
-              false,
-              'docs/updateDocs',
-            );
-          } catch (error) {
-            console.error('Error! Could not update doc', error);
-            toast.error('Error! Could not update doc');
-          }
-        },
-
         deleteDoc: async (id) => {
           try {
             await axios.delete(`${ROOT_URL}/docs/${id}`);

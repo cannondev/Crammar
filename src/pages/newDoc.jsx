@@ -20,15 +20,10 @@ import useStore from '../store';
 function NewDoc({ onClose }) {
   // local states for holding without API calling
   const [title, setTitle] = useState('');
-  const [fileName] = useState('');
-  const [content] = useState('');
-  const [preview] = useState('');
-  const [description] = useState('');
   const [pdfFile, setPdfFile] = useState(null);
+  const [loading, setLoading] = useState(false);
   const createDoc = useStore((state) => state.docSlice.createDoc);
   const navigate = useNavigate();
-
-  const [loading, setLoading] = useState(false);
 
   const onSubmitClick = async (e) => {
     e.preventDefault(); // prevents page-reload, handles with javascript
@@ -45,10 +40,6 @@ function NewDoc({ onClose }) {
 
     const newDoc = {
       title,
-      fileName,
-      content,
-      preview,
-      description,
       pdfFile,
     };
     await createDoc(newDoc);
@@ -160,6 +151,7 @@ function NewDoc({ onClose }) {
 }
 
 export default NewDoc;
+
 export const newDocOverlay = createOverlay((props) => (
   // eslint-disable-next-line react/jsx-props-no-spreading
   <Dialog.Root {...props}>
