@@ -6,6 +6,8 @@ This is Crammar, a tool that I created to help me stay on track with my class re
 ## Deployed Application
 The deployed frontend can be found here: https://crammar.onrender.com/
 
+BE WARY OF FILE SIZES and RESULTING TOKEN LENGTH. This is a new project that still needs to be optimized. Be aware of word count, I have tested majority-text PDFs with a size < 5mb with success.
+
 ## Video Demo
 https://github.com/user-attachments/assets/1430a1e9-20dc-4e21-8de8-a063341462ae
 
